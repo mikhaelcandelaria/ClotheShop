@@ -1,0 +1,83 @@
+:root{/* Background overlay */
+.auth-modal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(6px);
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Centered box */
+.auth-box {
+  background: #fff;
+  border-radius: 10px;
+  padding: 15px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header with buttons */
+.auth-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.auth-close {
+  font-size: 24px;
+  cursor: pointer;
+  color: #333;
+  margin-left: auto;
+}
+
+.auth-status {
+  margin-top: 10px;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+#auth-frame {
+  width: 100%;
+  height: 400px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+  --bg: #ffffff;
+  --card: #fbfbfb;
+  --muted: #666;
+  --accent: #0b76ef;
+  --shadow: 0 6px 18px rgba(12,12,12,0.06);
+  --radius: 12px;
+  --pad: 16px;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;background:var(--bg);color:#111}
+.container{max-width:900px;margin:28px auto;padding:12px}
+.card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:var(--pad);margin-bottom:14px}
+.header{text-align:center}
+.header h1{margin:6px 0;font-size:1.6rem}
+.muted{color:var(--muted);font-size:0.95rem}
+.content{display:flex;flex-direction:column;gap:12px}
+.nav{display:flex;gap:8px;align-items:center}
+.small{background:#fff;border:1px solid #eee;padding:8px 12px;border-radius:8px;cursor:pointer}
+.small:hover{transform:translateY(-1px)}
+iframe#auth-frame{width:100%;height:460px;border-radius:10px;border:1px solid #eee}
+.form{max-width:420px;margin:18px auto}
+.form .row{display:flex;flex-direction:column;margin-bottom:12px}
+label{font-size:0.9rem;margin-bottom:6px}
+input[type="text"], input[type="email"], input[type="password"]{
+  padding:10px 12px;border-radius:8px;border:1px solid #e6e6e6;background:transparent;
+}
+.btn{display:inline-block;padding:10px 16px;border-radius:10px;border:none;background:var(--accent);color:#fff;cursor:pointer}
+.smalllink{background:none;border:none;color:var(--accent);cursor:pointer;padding:6px}
+.alert{padding:10px;border-radius:8px;background:#f6f9ff;border:1px solid #e1efff;color:#034ea2}
+.footer{text-align:center;font-size:0.9rem}

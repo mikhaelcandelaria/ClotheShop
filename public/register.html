@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Register</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="form card">
+    <h2>Create Account</h2>
+    <div id="msg" class="muted"></div>
+
+    <div class="row">
+      <label>Full Name</label>
+      <input id="name" type="text" placeholder="John Doe">
+    </div>
+    <div class="row">
+      <label>Email</label>
+      <input id="email" type="email" placeholder="you@example.com">
+    </div>
+    <div class="row">
+      <label>Password</label>
+      <input id="password" type="password" placeholder="At least 6 characters">
+    </div>
+
+    <div style="display:flex;gap:8px">
+      <button id="registerBtn" class="btn">Register</button>
+    </div>
+  </div>
+
+  <script>
+    const msg = document.getElementById('msg');
+    document.getElementById('registerBtn').onclick = () => {
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const pass = document.getElementById('password').value;
+
+      if (!name || !email || pass.length < 6) {
+        msg.textContent = 'Please fill all fields correctly';
+        return;
+      }
+
+      const users = JSON.parse(localStorage.getItem('users') || '[]');
+      if (users.some(u => u.email === email)) {
+        msg.textContent = 'Email already registered';
+        return;
+      }
+
+      const newUser = { name, email, password: pass };
+      users.push(newUser);
+      localStorage.setItem('users', JSON.stringify(users));
+
+      parent.postMessage({ type: 'register-success', user: newUser }, '*');
+      msg.textContent = 'Registered successfully!';
+    };
+
+    document.getElementById('toLogin').onclick = () =>
+      parent.document.getElementById('auth-frame').src = 'login.html';
+  </script>
+</body>
+</html>

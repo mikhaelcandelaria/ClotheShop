@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Login</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="form card">
+    <h2>Login</h2>
+    <div id="msg" class="muted"></div>
+
+    <div class="row">
+      <label>Email</label>
+      <input id="email" type="email" placeholder="you@example.com">
+    </div>
+    <div class="row">
+      <label>Password</label>
+      <input id="password" type="password" placeholder="••••••••">
+    </div>
+
+    <div style="display:flex;gap:8px">
+      <button id="loginBtn" class="btn">Login</button>
+    </div>
+  </div>
+
+  <script>
+    const msg = document.getElementById('msg');
+    document.getElementById('loginBtn').onclick = () => {
+      const email = document.getElementById('email').value.trim();
+      const pass = document.getElementById('password').value;
+
+      const users = JSON.parse(localStorage.getItem('users') || '[]');
+      const user = users.find(u => u.email === email && u.password === pass);
+
+      if (!user) {
+        msg.textContent = 'Invalid email or password';
+        return;
+      }
+
+      // Save session to parent
+      parent.postMessage({ type: 'login-success', user }, '*');
+      msg.textContent = 'Login successful!';
+    };
+
+    document.getElementById('toRegister').onclick = () =>
+      parent.document.getElementById('auth-frame').src = 'register.html';
+  </script>
+</body>
+</html>
